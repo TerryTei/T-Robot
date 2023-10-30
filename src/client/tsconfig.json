@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "module": "commonjs",
+        "target": "es2017",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "strict": true,
+        "allowSyntheticDefaultImports": true
+    },
+    "include": ["**/*.ts"]
+}

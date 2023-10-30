@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>T-robot Simulator</title>
+        <style>
+            progress {
+                overflow: hidden;
+                margin: 0px;
+            }
+           
+                    .big,.book {
+                    opacity:0.85;
+                        
+                    }
+                    .rainbow,.red,.orange,.yellow,.green/*.blue*/{
+                        box-shadow: 0 0 0px #5B5B5B;
+                        display:flex;
+                        justify-content: space-around;
+                    }
+                    
+                    .pos{
+                        position:absolute;
+                        top: 65%;
+                        left:20%;
+                        
+                        
+                    }
+
+                    section{
+                        position:absolute;
+                        /*transform: translateX(30%)*/
+                        width: 900px;
+                        height:100px;
+                        box-shadow: 0 0 10px #080808;
+                        padding-left: 150px;
+                        padding-right: 150px;
+                    }
+                    .UP{
+                        display:flex;
+                        
+                        box-shadow: 0 0 10px #080808;
+                        width:1200px;
+                        height:100px;
+                        padding-bottom: 10px;
+                        padding-top: 10px;
+                        
+                    }
+                    
+                    .sup1,.sup2,.sup3,.sup4,.sup5,.sup6,.sup7,.sup8,.sup9,.sup10{
+                        
+                    width: 60px;
+                    height: 100px;
+                    position:relative;
+                    border-width:0px; 
+                    border-style:dashed;
+                    border-color: rgb(8, 9, 10);
+                    margin-left: 30px;
+                    margin-right: 30px;
+                    
+                    display: flex; /*隱藏執行列*/
+                    }
+                    .del{
+                        justify-content: space-around;
+                    }
+
+            .mwt_border .arrow_b_int{
+                width:0px;
+                height:0px;
+                border-width:15px;
+                border-style:solid;
+                border-color:#333 transparent transparent transparent ;
+                position:absolute;
+                bottom:-30px;
+                left:20px;
+            }
+            /*箭頭下-邊框*/
+            .mwt_border .arrow_b_out{
+                width:0px;
+                height:0px;
+                border-width:15px;
+                border-style:solid;
+                border-color:#fff transparent transparent transparent ;
+                position:absolute;
+                bottom:-29px;
+                left:20px;
+            }
+            .mwt_border .arrow_r_int{
+                width:0px;
+                height:0px;
+                border-width:15px;
+                border-style:solid;
+                border-color:#333 transparent transparent transparent ;
+                position:absolute;
+                bottom:-30px;
+                right:20px;
+            }
+            /*箭頭下-邊框*/
+            .mwt_border .arrow_r_out{
+                width:0px;
+                height:0px;
+                border-width:15px;
+                border-style:solid;
+                border-color:#fff transparent transparent transparent ;
+                position:absolute;
+                bottom:-29px;
+                right:20px;
+            }
+            .mwt_border{
+                width:700px;
+                height:100px;
+                text-align:center;
+                background:rgb(254, 254, 254);
+                position:relative;
+                border: solid 1px #333;
+                margin:30px;
+                padding:30px;
+                position:fixed;
+                top:100px;
+                left: 400px;
+               opacity: 0.9;
+            }
+            .btn{
+                position: absolute;
+                margin-left: 30%;
+            }
+            .book {
+                opacity:0.5;
+            }  
+            .bookchat{
+               z-index: 1;
+            }   
+            .movecard{
+                z-index: 2;
+            }
+              
+        </style>
+        
+    </head>
+
+    <body>
+
+        <div class="pos" id="UI" style="display:none">
+            
+            <div class="UP"> 
+                <div  class="sup1" id="div1" ></div>
+                <div  class="sup2" id="div2" ></div>
+                <div  class="sup3" id="div3" ></div>
+                <div  class="sup4" id="div4" ></div>
+                <div  class="sup5" id="div5" ></div>
+                <div  class="sup6" id="div6" ></div>
+                <div  class="sup7" id="div7" ></div>
+                <div  class="sup8" id="div8" ></div>
+                <div  class="sup9" id="div9" ></div>
+                <div  class="sup10" id="div10"></div>
+            </div>
+
+            <section>
+        
+        <div class="big" id="bigid">
+            <div  class="rainbow" id="rainbowid">
+                <img src='card/move//MoveCard.jpg' height="100  " width="=60" id="R_r">
+                <img src='card/voice/SoundCard.jpg' height="100  " width="=60" id="R_o">
+                <img src='card/pro/Chinese.jpg' height="100  " width="=60" id="R_y">
+                <img src='card/normal/Basic.jpg' height="100 " width="=60"  id="R_g">
+              <!--  <img src='UIimg/normal/Basic.jpg' height="100 " width="=60"  id="R_b">-->
+            </div>
+            <div  style="display:none" class="red" id="redid">                          <!--move-->
+                <button id="redback"> < </button>
+                <img id="drag1" src="card/move/Forward.jpg" height="100 " width="=60"  >
+                <img draggable="true" src="card/move/TurnLeft.jpg" height="100  " width="=60" id="r2">
+                <img draggable="true" src="card/move/TurnRight.jpg" height="100  " width="=60" id="r3">
+                <img draggable="true" src="card/move/180R.jpg" height="100 " width="=60"  id="r4">
+                <img draggable="true" src="card/move/Backward.jpg" height="100 " width="=60"  id="r5">
+                <button id="rednext"> > </button>
+            </div>
+           
+            <div style="display:none" class="orange" id="orangeid">
+                <button id="orangeback">  < </button>
+                <img src="card/voice/Airplane.jpg" height="100  " width="=60" id="o1">
+                <img src="card/voice/ClapHand.jpg" height="100  " width="=60" id="o2">
+                <img src="card/voice/Sheep.jpg " height="100  " width="=60" id="o3">
+                <img src="card/voice/Pig.jpg" height="100 " width="=60"  id="o4">
+                <img src="card/voice/Cat.jpg" height="100 " width="=60"  id="o5">
+                <button id="orangenext"> > </button>
+            </div>
+            
+            <div style="display:none" class="yellow" id="yellowid">
+                <button id="yellowback"> < </button>
+                <img src="card/pro/LoopsThree.jpg" height="100  " width="=60" id="y1">
+                <img src="card/pro/LoopsEnd.jpg" height="100  " width="=60" id="y2">
+                
+                <button id="yellownext"> > </button>
+            </div>
+            
+            <div style="display:none" class="green" id="greenid">
+                <button id="greenback"> < </button>
+                <img src="card/normal/Go.jpg" height="100  " width="=60" class="red" id="g1">
+                <button id="greennext"> > </button>
+            </div>
+            <!--<div style="display:none" class="blue" id="blueid">
+                <button id="blueback"> < </button>
+                <img src="card/normal/Go.jpg" height="100  " width="=60" class="red" id="b1">
+                <img src="card/normal/Go.jpg" height="100  " width="=60"  class="orange" id="b2">
+                <img src="card/normal/Go.jpg" height="100  " width="=60"  class="yellow" id="b3">
+                <img src="card/normal/Go.jpg" height="100 " width="=60"  class="green" id="b4">
+                <img src="card/normal/Go.jpg" height="100 " width="=60"  class="blue" id=" b5">
+                <button id="bluenext"> > </button>
+            </div>-->
+            <div class="btn">
+                <button type="submit" id="btn_submit" onclick="buttononclick()"> back </button>
+                <button type="submit" id="del" onclick="buttononclick()"> delete </button>
+                <button type="submit" id="ret" onclick="buttononclick()"> return </button>
+            </div>
+
+            </div>
+        </section>
+        </div>
+
+        <div id="pic1" style="display:none"><img src="UIimg/pic1.png"  height="400 " width="400" style="position:absolute; top:29%;left:18%;" ></div>
+        <div id="pic3" style="display:none"><img src="UIimg/fairy.png"  height="80% " style="position:absolute; top:-5%;left:30%;" ></div>
+        <div id="pic2" style="display:none"><img src="UIimg/pic1.png" height="200 " width="200" style="position:absolute; top:70%;left:5%"></div>
+        <div id="fairy" style="display:none"><img src="UIimg/fairy.png"  height="80% " style="position:absolute; top:0%;left:20%;" ></div>
+        
+        <div id="book" style="display:none ;opacity: 0.85;"><img src="UIimg/book.jpg" height="60" width="80" style="position:absolute;top:40%;left:2%;"></div>
+        <div id="speaker" style="display:none ;opacity: 0.85;"><img src="UIimg/speaker.png" height="60" width="80" style="position:absolute;top:50%;left:2%;"></div>
+        <div id="speaker1" style="display:none ;opacity: 0.85;"><img src="UIimg/speaker1.png" height="60" width="80" style="position:absolute;top:50%;left:2%;"></div>
+        <div id="setting" style="display:none ;opacity: 0.85;"></div>
+        
+        
+        <div class="mwt_border" style="display:none" id="chatL">
+            <span class="arrow_r_out"></span>
+            這裡是破碎的時空之一
+        </div >
+
+        <div class="mwt_border" style="display:none" id="chatLL">
+            <span class="arrow_b_out"></span>
+            這裡沒有我妹妹...
+        </div >
+       
+        <div class="mwt_border" style="display:none" id="chatA">
+            
+            你好我是Victoria的哥哥
+        </div >
+       <!-- <div><img src="UIimg/blue.jpg" style="display:flex"height="200 " width="=130" style="position:fixed; top:20px;left:100px" id="pic2"></div>
+        -->
+        <div class="mwt_border" style="display:none" id="chatB">
+            <span class="arrow_b_out"></span>
+            第二個時空似乎感覺跟妹妹形容得不太對..
+            
+        </div >
+        <div class="mwt_border" style="display:none" id="chatBB">
+            <span class="arrow_b_out"></span>
+            可惡 這裡也沒有我妹妹...
+        </div >
+        <div class="mwt_border" style="display:none" id="chatCC">
+            <span class="arrow_b_out"></span>
+            你怎麼跑到這裡了
+        </div >
+        <div id="piclev2" style="display:none"><img src="UIimg/pic1.png" height="200 " width="200" style="position:absolute; top:70%;left:5%"></div>
+
+        <div class="mwt_border" style="display:none" id="chatC">
+            <span class="arrow_b_out"></span>
+            這裡的美景...一定就是這裡了 我一定會救你出來的維多利亞
+            
+        </div >
+        <div id="piclev3" style="display:none"><img src="UIimg/pic1.png" height="200 " width="200" style="position:absolute; top:70%;left:5%"></div>
+
+        
+        <div  style="position:absolute; top:10%;left:20%; display:none" id="book1"> <img src="UIimg/book.jpg" width="1000" height="700" id="bookchat"> 
+            <b style="position:absolute; top:5%; left:15%;font-size:26px;">遊戲介紹 <br>請先點選黃色圈圈進入關卡，再透過以下功能卡片前進到終點，<br>指令最多只能放10個</b><br>選擇完功能卡片請記得再最後加上GO的指令。</b>
+            <img src="UIimg/MoveCard.jpg" width="70" height="100"  style="position:absolute; top:25%;left:15%;" id="movecard">
+            <b style="position:absolute; top:27%; left:25%;font-size:18px;"> 移動系列的卡片<br>裡面放有前進左右後退的指令</b>
+            <img src="UIimg/SoundCard.jpg" width="70" height="100"  style="position:absolute; top:35%;left:55%;" id="movecard">
+            <b style="position:absolute; top:37%; left:65%;font-size:18px;"> 音效系列的卡片<br>裡面放有各種音效的指令</b>
+            <img src="card/pro/Chinese.jpg" width="70" height="100"  style="position:absolute; top:50%;left:15%;" id="movecard">
+            <b style="position:absolute; top:52%; left:25%;font-size:18px;"> 進階系列的卡片<br>裡面放有複合式的指令</b>
+            <img src="UIimg/Basic.jpg" width="70" height="100"  style="position:absolute; top:60%;left:55%;" id="movecard">
+            <b style="position:absolute; top:62%; left:65%;font-size:18px;">基礎卡<br>最重要的GO就放在裡面!</b>
+            </div>
+            
+    </body>
+    
+</html>
